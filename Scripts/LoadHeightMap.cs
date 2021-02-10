@@ -6,70 +6,50 @@ using UnityEngine;
 public class LoadHeightMap : MonoBehaviour
 {
     private Terrain terrain;
+
     private TerrainData terrainData;
 
     [SerializeField]
     private Texture2D heightMapImage;
 
-    [SerializeField]
-    private Vector3 heightMapScale = new Vector3(1, 1, 1);
 
     [SerializeField]
-    private bool loadHeightMap = true;
+    private bool HMloaded = true;
 
     [SerializeField]
-    private bool flattenHeightMap = false;
-
+    private Vector3 MapScale = new Vector3(1, 1, 1);
     // Start is called before the first frame update
     void Start()
     {
         terrain = this.GetComponent<Terrain>();
         terrainData = Terrain.activeTerrain.terrainData;
 
-        UpdateHeightmap();
+        CreateHeightmap();
     }
 
-    private void OnValidate()
-    {
-        if (flattenHeightMap)
+    /*private void OnValidate()
+    { 
+        if (HMloaded)
         {
-            loadHeightMap = false;
+            CreateHeightmap();
         }
+    }*/
 
-        if (loadHeightMap || flattenHeightMap)
-        {
-            UpdateHeightmap();
-        }
-    }
-
-    void UpdateHeightmap()
+    void CreateHeightmap()
     {
-        //creates a new empty 2D array of float based on the dimensions of heightmap resolution set in the settings
-        //float[,] heightMap = new float[terrainData.heightmapResolution, terrainData.heightmapResolution];
+        float[,] Map = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
 
-        //gets the height map data that already exists in the terrain and loads it into a 2D array
-        float[,] heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapResolution, terrainData.heightmapResolution);
-
-        for (int width = 0; width < terrainData.heightmapResolution; width++)
+        for (int w = 0; w < terrainData.heightmapResolution; w++)
         {
-            for (int height = 0; height < terrainData.heightmapResolution; height++)
+            for (int h = 0; h < terrainData.heightmapResolution; h++)
             {
-                if (loadHeightMap)
+                if (HMloaded)
                 {
-
-                    heightMap[width, height] = heightMapImage.GetPixel((int)(width * heightMapScale.x),
-                                                                       (int)(height * heightMapScale.z)).grayscale
-                                                                       * heightMapScale.y;
-                }
-
-                if (flattenHeightMap)
-                {
-
-                    heightMap[width, height] = 0;
+                    Map[w, h] = heightMapImage.GetPixel((int)(w * MapScale.x),(int)(h * MapScale.z)).grayscale* MapScale.y;
                 }
             }
         }
 
-        terrainData.SetHeights(0, 0, heightMap);
+        terrainData.SetHeights(0, 0, Map);
     }
 }
