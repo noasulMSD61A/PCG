@@ -131,6 +131,7 @@ public class TerrainMaker : MonoBehaviour
         {
             perlinNoiseWidthScale = Random.Range(0.01f, 0.02f);
             perlinNoiseHeightScale = Random.Range(0.01f, 0.02f);
+            
             CreateTerrain();
         }
 

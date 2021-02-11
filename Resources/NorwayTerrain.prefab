@@ -114,8 +114,8 @@ MonoBehaviour:
   addTree: 1
   minRandomHeightRange: 0.93
   maxRandomHeightRange: 0.52
-  perlinNoiseWidthScale: 0.014726687
-  perlinNoiseHeightScale: 0.018835235
+  perlinNoiseWidthScale: 0.012448469
+  perlinNoiseHeightScale: 0.015315502
   perlinNoiseOffsetWidth: 1
   perlinNosieOffsetHeight: 1
   terrainTextureDataList:
@@ -153,4 +153,4 @@ MonoBehaviour:
   waterHeight: 0.08
   addWater: 1
   clouds: {fileID: 100000, guid: 36ebb9a9e2bbff843b92cc95e0cdc972, type: 3}
-  Mist: {fileID: 100000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
+  Mist: {fileID: 2861759188159851178, guid: a258471265169fa45affbddc40525a1b, type: 3}

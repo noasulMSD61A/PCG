@@ -46,7 +46,7 @@ public class GenerateNaturalElements : MonoBehaviour
 
         waterGameObject.transform.position = this.transform.position + new Vector3(
             terrainData.size.x / 2,
-            waterHeight * terrainData.size.y/1.2f,
+            waterHeight * terrainData.size.y * 3.5f,
             terrainData.size.z / 2);
 
         waterGameObject.transform.localScale = new Vector3(terrainData.size.x, 1, terrainData.size.z);
@@ -83,7 +83,7 @@ public class GenerateNaturalElements : MonoBehaviour
 
         MistGameObject.transform.position = this.transform.position + new Vector3(
             terrainData.size.x / 2,
-            waterHeight * terrainData.size.y /3,
+            waterHeight * terrainData.size.y,
             terrainData.size.z / 2);
 
         MistGameObject.transform.localScale = new Vector3(terrainData.size.x,100 , terrainData.size.z);
