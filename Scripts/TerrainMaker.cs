@@ -53,10 +53,10 @@ public class TerrainMaker : MonoBehaviour
 
     //variables for generating terrain using perlin noise
     [SerializeField]
-    private float perlinNoiseWidthScale = 0.01f;
+    private float perlinNoiseWidthScale;
 
     [SerializeField]
-    private float perlinNoiseHeightScale = 0.01f;
+    private float perlinNoiseHeightScale;
 
     [SerializeField]
     private float perlinNoiseOffsetWidth = 1, perlinNosieOffsetHeight = 1;
@@ -86,23 +86,19 @@ public class TerrainMaker : MonoBehaviour
     [SerializeField]
     private int terrainLayerIndex = 8;
 
-    /* [SerializeField]
-     private GameObject water;
-
-     [SerializeField]
-     private float waterHeight = 0.2f;
-
-     [SerializeField]
-     private bool addWater;*/
-
-
     void Start()
     {
         terrain = GetComponent<Terrain>();
         terrainData = Terrain.activeTerrain.terrainData;
 
         CreateTerrain();
+
+
+        AddTree();
+
     }
+     
+    
 
     void initialise()
     {
@@ -133,6 +129,8 @@ public class TerrainMaker : MonoBehaviour
 
         if (generateTerrain || flattenTerrain || generatePerlinNoiseTerrain)
         {
+            perlinNoiseWidthScale = Random.Range(0.01f, 0.02f);
+            perlinNoiseHeightScale = Random.Range(0.01f, 0.02f);
             CreateTerrain();
         }
 
@@ -151,10 +149,7 @@ public class TerrainMaker : MonoBehaviour
             AddTree();
         }
 
-        /*if (addWater)
-        {
-            AddWater();
-        }*/
+        
     }
 
 
@@ -330,24 +325,6 @@ public class TerrainMaker : MonoBehaviour
 
         terrainData.treeInstances = treeInstanceList.ToArray();
     }
-
-    /*void AddWater()
-    {
-        GameObject waterGameObject = GameObject.Find("water");
-
-        if (!waterGameObject)
-        {
-            waterGameObject = Instantiate(water, this.transform.position, this.transform.rotation);
-            waterGameObject.name = "water";
-        }
-
-        waterGameObject.transform.position = this.transform.position + new Vector3(
-            terrainData.size.x / 2,
-            waterHeight * terrainData.size.y,
-            terrainData.size.z / 2);
-
-        waterGameObject.transform.localScale = new Vector3(terrainData.size.x, 1, terrainData.size.z);
-    }*/
 
 }
 
