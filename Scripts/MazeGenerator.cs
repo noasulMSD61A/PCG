@@ -27,7 +27,7 @@ public class MazeGenerator : MonoBehaviour
         cube = Resources.Load<GameObject>("Cube");
         pyramid = Resources.Load<GameObject>("Pyramid");
         Plane = Resources.Load<GameObject>("Plane");
-        Plane2 = Resources.Load<GameObject>("Plane");
+        Plane2 = Resources.Load<GameObject>("mazefinish");
         Longcube = Resources.Load<GameObject>("LongCube");
         player = Resources.Load<GameObject>("FPScontrollerProper");
         borders = Resources.Load<GameObject>("BorderWalls");

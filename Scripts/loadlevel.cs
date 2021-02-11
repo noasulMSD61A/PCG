@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class loadlevel : MonoBehaviour
 {
     bool hit = false;
+    bool hit2 = false;
     Scene Scene;
     void Start()
     {
@@ -25,6 +26,14 @@ public class loadlevel : MonoBehaviour
             hit = true;
             print("collided");
         }
+
+        if (other.gameObject.tag == "finishingplane")
+        {
+            hit2 = true;
+            print("collided");
+        }
+
+
     }
 
     void loadinglevel()
@@ -43,6 +52,12 @@ public class loadlevel : MonoBehaviour
         {
             SceneManager.LoadScene("WinScene");
             hit = false;
+        }
+
+        if (hit2 == true && SceneManager.GetActiveScene().name == "MazeGame")
+        {
+            SceneManager.LoadScene("WinScene");
+            hit2 = false;
         }
 
     }

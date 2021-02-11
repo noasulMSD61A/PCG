@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4186260782980151112}
   - component: {fileID: 4186260782980151108}
   - component: {fileID: 4186260782980151109}
+  - component: {fileID: -8562593319144144024}
+  - component: {fileID: -7223481586548742005}
   m_Layer: 0
   m_Name: NorwayTerrain
   m_TagString: Untagged
@@ -86,7 +88,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4186260782980151115}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57efa4a62baa2874291b1328f804c359, type: 3}
   m_Name: 
@@ -111,32 +113,22 @@ MonoBehaviour:
   flattenTerrain: 0
   addTexture: 1
   removeTexture: 0
-  addTree: 1
-  minRandomHeightRange: 0.93
-  maxRandomHeightRange: 0.52
-  perlinNoiseWidthScale: 0.012448469
-  perlinNoiseHeightScale: 0.015315502
-  perlinNoiseOffsetWidth: 1
-  perlinNosieOffsetHeight: 1
+  addTree: 0
+  minRandomHeightRange: 0
+  maxRandomHeightRange: 1
+  perlinNoiseWidthScale: 0.019163402
+  perlinNoiseHeightScale: 0.013340719
   terrainTextureDataList:
   - terrainTexture: {fileID: 2800000, guid: bfd675cc0db1d4656b75dc6d6ba91142, type: 3}
     minHeight: 0
-    maxHeight: 0.1
-    tileSize: {x: 1, y: 1}
-  - terrainTexture: {fileID: 2800000, guid: c6e0767b1f8c34890ac245217f4b9731, type: 3}
-    minHeight: 0.1
     maxHeight: 0.8
     tileSize: {x: 1, y: 1}
-  terrainTextureBlendOffset: 0.5
-  treeDataList:
-  - treeMesh: {fileID: 135282680860124225, guid: 563770f62d549a74ca4310f83cb81efc, type: 3}
-    minHeight: 0.5
+  - terrainTexture: {fileID: 2800000, guid: c6e0767b1f8c34890ac245217f4b9731, type: 3}
+    minHeight: 0.8
     maxHeight: 1
-  maxTrees: 2000
-  treeSpacing: 10
-  randomXRange: 0
-  randomZRange: 0
-  terrainLayerIndex: 7
+    tileSize: {x: 1, y: 1}
+  terrainTextureBlendOffset: 0.3
+  player: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!114 &4186260782980151109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +146,61 @@ MonoBehaviour:
   addWater: 1
   clouds: {fileID: 100000, guid: 36ebb9a9e2bbff843b92cc95e0cdc972, type: 3}
   Mist: {fileID: 2861759188159851178, guid: a258471265169fa45affbddc40525a1b, type: 3}
+  treeDataList:
+  - treeMesh: {fileID: 100004, guid: c91c1eb85782d5748ace27eb4d7415bb, type: 3}
+    minHeight: 0
+    maxHeight: 1
+  maxTrees: 2000
+  treeSpacing: 10
+  randomXRange: 1000
+  randomZRange: 1000
+  terrainLayerIndex: 8
+--- !u!23 &-8562593319144144024
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186260782980151115}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &-7223481586548742005
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186260782980151115}
+  m_Mesh: {fileID: 0}

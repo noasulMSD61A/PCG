@@ -119,6 +119,8 @@ GameObject:
   - component: {fileID: 49923953445450646}
   - component: {fileID: 49923953432044822}
   - component: {fileID: 49923953433960342}
+  - component: {fileID: 5039663667792110932}
+  - component: {fileID: -7681111226342137211}
   m_Layer: 0
   m_Name: FPSControllerProper
   m_TagString: player
@@ -396,6 +398,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &5039663667792110932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49923953435231862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0556cbfdd163d4bab13c36e7d7b64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-7681111226342137211
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49923953435231862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 6.387322, z: 1}
+  m_Center: {x: 0, y: -0.29294848, z: 0}
 --- !u!1001 &3103397221821229686
 PrefabInstance:
   m_ObjectHideFlags: 0

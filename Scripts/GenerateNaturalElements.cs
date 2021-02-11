@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+class TreeData
+{
+    public GameObject treeMesh;
+    public float minHeight;
+    public float maxHeight;
+}
 public class GenerateNaturalElements : MonoBehaviour
 {
     [SerializeField]
@@ -20,12 +27,34 @@ public class GenerateNaturalElements : MonoBehaviour
     private GameObject Mist;
 
     private TerrainData terrainData;
+
+    [SerializeField]
+    private List<TreeData> treeDataList;
+
+    [SerializeField]
+    private int maxTrees = 2000;
+
+    [SerializeField]
+    private int treeSpacing = 10;
+
+    
+
+    [SerializeField]
+    private float randomXRange = 5.0f;
+
+    [SerializeField]
+    private float randomZRange = 5.0f;
+
+    [SerializeField]
+    private int terrainLayerIndex = 8;
     void Start()
     {
+        
         terrainData = Terrain.activeTerrain.terrainData;
         AddWater();
         AddMist();
         Addclouds();
+        AddTree();
     }
 
     // Update is called once per frame
@@ -88,6 +117,76 @@ public class GenerateNaturalElements : MonoBehaviour
 
         MistGameObject.transform.localScale = new Vector3(terrainData.size.x,100 , terrainData.size.z);
 
+    }
+
+    void AddTree()
+    {
+        TreePrototype[] trees = new TreePrototype[treeDataList.Count];
+
+        for (int i = 0; i < treeDataList.Count; i++)
+        {
+            trees[i] = new TreePrototype();
+            trees[i].prefab = treeDataList[i].treeMesh;
+        }
+
+        terrainData.treePrototypes = trees;
+
+        List<TreeInstance> treeInstanceList = new List<TreeInstance>();
+
+        
+            for (int z = 0; z < terrainData.size.z; z += treeSpacing)
+            {
+                for (int x = 0; x < terrainData.size.x; x += treeSpacing)
+                {
+                    for (int treePrototypeIndex = 0; treePrototypeIndex < trees.Length; treePrototypeIndex++)
+                    {
+                        if (treeInstanceList.Count < maxTrees)
+                        {
+                            float currentHeight = terrainData.GetHeight(x, z) / terrainData.size.y;
+
+                            if (currentHeight >= treeDataList[treePrototypeIndex].minHeight &&
+                               currentHeight <= treeDataList[treePrototypeIndex].maxHeight)
+                            {
+                                float randomX = (x + Random.Range(-randomXRange, randomXRange)) / terrainData.size.x;
+                                float randomZ = (z + Random.Range(-randomZRange, randomZRange)) / terrainData.size.z;
+
+                                TreeInstance treeInstance = new TreeInstance();
+
+                                treeInstance.position = new Vector3(randomX, currentHeight, randomZ);
+
+                                Vector3 treePosition = new Vector3(treeInstance.position.x * terrainData.size.x,
+                                                                    treeInstance.position.y * terrainData.size.y,
+                                                                    treeInstance.position.z * terrainData.size.z) + this.transform.position;
+
+
+
+                                RaycastHit raycastHit;
+                                int layerMask = 1 << terrainLayerIndex;
+
+                                if (Physics.Raycast(treePosition, Vector3.down, out raycastHit, 100, layerMask) ||
+                                    Physics.Raycast(treePosition, Vector3.up, out raycastHit, 100, layerMask))
+                                {
+                                    float treeHeight = (raycastHit.point.y - this.transform.position.y) / terrainData.size.y;
+
+                                    treeInstance.position = new Vector3(treeInstance.position.x, treeHeight, treeInstance.position.z);
+
+                                    treeInstance.rotation = Random.Range(0, 360);
+                                    treeInstance.prototypeIndex = treePrototypeIndex;
+                                    treeInstance.color = Color.white;
+                                    treeInstance.lightmapColor = Color.white;
+                                    treeInstance.heightScale = 0.95f;
+                                    treeInstance.widthScale = 0.95f;
+
+                                    treeInstanceList.Add(treeInstance);
+                                }
+                            }
+                        }
+                    }
+                }
+            
+        }
+
+        terrainData.treeInstances = treeInstanceList.ToArray();
     }
 
 }
