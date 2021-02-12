@@ -55,6 +55,7 @@ public class GenerateNaturalElements : MonoBehaviour
         AddMist();
         Addclouds();
         AddTree();
+
     }
 
     // Update is called once per frame

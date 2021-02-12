@@ -34,9 +34,6 @@ public class TerrainMaker : MonoBehaviour
     [SerializeField]
     private bool removeTexture = false;
 
-    [SerializeField]
-    private bool addTree = false;
-
     //variables for generating terrain using random values
     [SerializeField]
     private float minRandomHeightRange = 0f;
@@ -72,6 +69,7 @@ public class TerrainMaker : MonoBehaviour
         terrainData = Terrain.activeTerrain.terrainData;
         createPlayer();
         CreateTerrain();
+        TerrainTexture();
         //AddTree();
         
     }
@@ -112,10 +110,10 @@ public class TerrainMaker : MonoBehaviour
             addTexture = false;
         }
 
-        if (addTexture || removeTexture)
+        /*if (addTexture || removeTexture)
         {
             TerrainTexture();
-        }
+        }*/
 
        
 
